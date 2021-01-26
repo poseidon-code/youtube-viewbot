@@ -18,6 +18,8 @@ The computer, this program will be running on, must have `Python` installed and 
 
 3. The computer must have **Google Chrome** web browser installed.
 
+4. Download Chrome WebDriver from [here](https://chromedriver.chromium.org/downloads). _(this program requires you to download the Chrome WebDriver of **same version** as that of your Google Chrome Browser, and move-replace that to this program's directory)_
+
 4. Download this program from [here](https://github.com/poseidon-code/youtube-viewbot/archive/main.zip)
 
 ---
