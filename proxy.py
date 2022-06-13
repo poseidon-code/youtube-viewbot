@@ -1,8 +1,14 @@
 # proxy scraping for https://freeproxylists.net/
-from selenium.webdriver import Chrome, ChromeOptions
 import concurrent.futures
 from os import system
+from platform import system as cos
 
+from selenium.webdriver import Chrome, ChromeOptions
+
+
+def clear():
+    if cos() == 'Windows': system('cls')
+    else: system('clear')
 
 # www.freeproxylists.com proxy list URLs
 urls = ['http://www.freeproxylists.net/?s=rs', 'http://www.freeproxylists.net/?pr=HTTPS&s=rs', 'http://www.freeproxylists.net/?pr=HTTPS&s=u', 'http://www.freeproxylists.net/?pr=HTTPS&s=ts', 'http://www.freeproxylists.net/?c=&pt=&pr=HTTPS&a%5B%5D=0&a%5B%5D=1&a%5B%5D=2&u=0']
@@ -32,12 +38,12 @@ def getProxy(url):
 
 
 
-system('cls')
+clear()
 print('[...]\tGetting Proxies from www.freeproxylists.net')
 # executing getProxy() parallelly
 with concurrent.futures.ThreadPoolExecutor() as executor:
     executor.map(getProxy, urls)
-system('cls')
+clear()
 print('[DONE]\tGetting Proxies from www.freeproxylists.net')
 
 
