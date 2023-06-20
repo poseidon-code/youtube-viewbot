@@ -20,7 +20,7 @@ The computer, this program will be running on, must have `Python` installed and 
 
 4. Download Chrome WebDriver from [here](https://chromedriver.chromium.org/downloads). _(this program requires you to download the Chrome WebDriver of **same version** as that of your Google Chrome Browser, and move-replace that to this program's directory)_
 
-4. Download this program from [here](https://github.com/poseidon-code/youtube-viewbot/archive/main.zip)
+5. Download this program from [here](https://github.com/poseidon-code/youtube-viewbot/archive/main.zip)
 
 ---
 
@@ -53,9 +53,19 @@ The computer, this program will be running on, must have `Python` installed and 
 
     > Make sure you run this command every time whenever starting this program, as this would get latest proxies everytime.
 
-    > **PRO TIP :** If you have any other source of having proxies (like; PRO/PAID member of free-proxy-list.com or any other proxy provider), then you can get a premium proxy list from them, and make an empty `proxy-list.txt` file in that directory and paste all those premium proxies line-by-line and **skip this step**.
+5. The `proxy-list.txt` file contains IP addresses and their respective host ports in the following pattern : `<IP address>:<port>` per line.
 
-5. Copy the YouTube video `URL` that you want to increase the views of, and execute this command :
+    ```txt
+    ./proxy-list.txt
+
+    134.87.56.146:3677
+    213.89.37.145:3523
+    145.123.77.143:987
+    ```
+
+    > **PRO TIP :** If you have any other source of having proxies (like; PRO/PAID member of free-proxy-list.com or any other proxy provider), then you can get a premium proxy list from them, and make an empty `proxy-list.txt` file in that directory and paste all those premium proxies line-by-line and **skip step 4**.
+
+6. Copy the YouTube video `URL` that you want to increase the views of, and execute this command :
     ```bash
     python viewbot.py <paste that URL> <enter watch-time (seconds)>
     ```
