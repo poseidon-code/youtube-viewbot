@@ -1,50 +1,55 @@
-# proxy scraping for https://freeproxylists.net/
+# proxy scraping for/from https://free-proxy.cz/
+
 import concurrent.futures
 from os import system
-from platform import system as cos
+from platform import system as current_os
 
-from selenium.webdriver import Chrome, ChromeOptions
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.webdriver import WebDriver as Chrome
+from selenium.webdriver.common.by import By
 
 
 def clear():
-    if cos() == 'Windows': system('cls')
+    if current_os() == 'Windows': system('cls')
     else: system('clear')
 
-# www.freeproxylists.com proxy list URLs
-urls = ['http://www.freeproxylists.net/?s=rs', 'http://www.freeproxylists.net/?pr=HTTPS&s=rs', 'http://www.freeproxylists.net/?pr=HTTPS&s=u', 'http://www.freeproxylists.net/?pr=HTTPS&s=ts', 'http://www.freeproxylists.net/?c=&pt=&pr=HTTPS&a%5B%5D=0&a%5B%5D=1&a%5B%5D=2&u=0']
-
+# www.free-proxy.cz proxy list URLs
+urls = [
+    'http://free-proxy.cz/en/proxylist/country/all/https/ping/all',
+    'http://free-proxy.cz/en/proxylist/country/all/https/uptime/all',
+    'http://free-proxy.cz/en/proxylist/country/all/https/speed/all'
+]
 
 # setting webdriver options
 options = ChromeOptions()
-options.add_experimental_option("excludeSwitches", ["enable-automation"])
-options.add_experimental_option("excludeSwitches", ["enable-logging"])
-options.headless=True
+options.add_argument('-headless')
 
 
 # getting all proxies
 proxies = []
 def getProxy(url):
-    driver = Chrome(executable_path='./chromedriver.exe', options=options)
+    service = ChromeService(executable_path='./chromedriver')
+    driver = Chrome(options=options, service=service)
+    
     driver.get(url)
-    l = len(driver.find_elements_by_xpath(f'/html/body/div[1]/div[2]/table/tbody/tr'))
-    for i in range(2,l):
-        try:
-            host = driver.find_elements_by_xpath(f'/html/body/div[1]/div[2]/table/tbody/tr[{i}]/td[1]/a')[0]
-            port = driver.find_elements_by_xpath(f'/html/body/div[1]/div[2]/table/tbody/tr[{i}]/td[2]')[0]
-            proxies.append(':'.join([host.text,port.text]))
-        except:
-            pass
+    driver.find_element(By.XPATH, '//*[@id="clickexport"]').click()
+    proxylist = driver.find_element(By.XPATH, '//*[@id="zkzk"]')
+    
+    global proxies
+    proxies.extend(proxylist.text.splitlines())
+
     driver.quit()
 
 
 
 clear()
-print('[...]\tGetting Proxies from www.freeproxylists.net')
+print('[...]\tGetting Proxies from www.free-proxy.cz')
 # executing getProxy() parallelly
 with concurrent.futures.ThreadPoolExecutor() as executor:
     executor.map(getProxy, urls)
 clear()
-print('[DONE]\tGetting Proxies from www.freeproxylists.net')
+print('[DONE]\tGetting Proxies from www.free-proxy.cz')
 
 
 # removing duplicate proxies
