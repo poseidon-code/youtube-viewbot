@@ -29,7 +29,7 @@ options.add_argument('-headless')
 # getting all proxies
 proxies = []
 def getProxy(url):
-    service = ChromeService(executable_path='./chromedriver')
+    service = ChromeService(executable_path='./chromedriver.exe')
     driver = Chrome(options=options, service=service)
     
     driver.get(url)
