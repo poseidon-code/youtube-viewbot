@@ -1,15 +1,5 @@
 # YouTube Viewbot
 
-<div align="center">
-
-> ## ⚠ **NOTICE** ⚠
->
-> As of `12th September, 2023` the [`Free Proxy Lists`](https://www.freeproxylists.net) website is not accessible anymore hence the `proxy-list.txt` file could not be generated. The `proxy.py` script will be changed to a new free proxy provider soon.
-
-### &bull; &bull; &bull;
-
-</div>
-
 > ## ⚠ **DISCLAIMER** ⚠
 >
 > YouTube Viewbot is just an experiment, and all the risk involved and harm done, on running this program, is solely on the user of this program.\
