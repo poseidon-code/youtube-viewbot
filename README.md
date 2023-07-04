@@ -80,4 +80,4 @@ The computer, this program will be running on, must have `Python` installed and 
 
 ## Acknowledgement
 
-YouTube Viewbot is made by [poseidon-code](https://github.com/poseidon-code) using [Selenium](https://www.selenium.dev) Web Driver. Free proxies are provided by [FreeProxyList](https://www.freeproxylists.net). This program is an experimental project and one should go through the **[Disclaimer](#⚠-disclaimer-⚠)** at the start.
+YouTube Viewbot is made by [poseidon-code](https://github.com/poseidon-code) using [Selenium](https://www.selenium.dev) Web Driver. Free proxies are provided by [FreeProxyList](https://www.free-proxy.cz). This program is an experimental project and one should go through the **[Disclaimer](#⚠-disclaimer-⚠)** at the start.
