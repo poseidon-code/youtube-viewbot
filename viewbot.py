@@ -1,7 +1,12 @@
-from selenium.webdriver import Chrome, ChromeOptions
-import time
-import sys
 import concurrent.futures
+import sys
+import time
+
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.webdriver import WebDriver as Chrome
+from selenium.webdriver.common.by import By
+
 
 # takes YouTube video URL & duration of watching (playing) the video (:in seconds)
 url, duration = str(sys.argv[1]), int(sys.argv[2])
@@ -24,12 +29,15 @@ def getViews(proxy):
     options.add_experimental_option("excludeSwitches", ["enable-logging"])
     options.add_argument('--proxy-server=%s' %proxy)
     options.add_argument('--window-size=640,480')
+
     try:
-        driver = Chrome(executable_path='./chromedriver.exe', options=options)
+        service = ChromeService(executable_path='./chromedriver.exe')
+        driver = Chrome(options=options, service=service)
         driver.get(url)
         time.sleep(duration)
     except:
         pass
+
     driver.quit()
 
 # executing start() parallelly
